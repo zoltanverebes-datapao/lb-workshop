@@ -36,22 +36,34 @@ assumptions and checks if the current project state matches. Verdict is PASS/FAI
 fail red before stage 2 starts. After stage 1 is committed, `tests/contract/`
 is frozen for the remainder of the item.
 
+### Spec status tracking
+
+Every spec has a `Status:` line near the top. Update it at each stage transition:
+
+| Transition | New status |
+|------------|------------|
+| Human approves spec and implementation begins (stage 0.5) | `IN PROGRESS` |
+| Evaluator returns `PASS` and commit is made | `IMPLEMENTED` |
+
+New specs created by `spec-writer` start as `Status: **PENDING**`.
+
 ### Pre-implementation (one-time)
 
 1. Human approves spec (removes `## Assumptions — CONFIRM` section).
-2. Delegate to `assumption-validator` with the spec id.
-3. Read the verdict:
-   - `PASS` → proceed to step 4
+2. Set spec status to `IN PROGRESS`.
+3. Delegate to `assumption-validator` with the spec id.
+4. Read the verdict:
+   - `PASS` → proceed to step 5
    - `FAIL` → human fixes issues, re-run validator
    - `BLOCKED` → stop and report to human; human decides and re-runs
-4. Delegate to `test-author` with the spec id (contract tests are written once, frozen after).
+5. Delegate to `test-author` with the spec id (contract tests are written once, frozen after).
 
 ### Round N (implementation lead behaviour)
 
 1. Delegate to `generator` with the item id and the newest verdict path (if any).
 2. Delegate to `evaluator` with the item id and round number `n`.
 3. Read the verdict line:
-   - `PASS` → commit and stop.
+   - `PASS` → set spec status to `IMPLEMENTED`, commit and stop.
    - `FAIL` → `n = n + 1`, go to 1.
    - `BLOCKED` → stop and report to the human. **Does not consume a round.**
 4. After **3** consecutive FAILs, stop and escalate. Three FAILs means the spec

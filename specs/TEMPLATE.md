@@ -1,5 +1,7 @@
 # <ID>: <one-line title>
 
+Status: **PENDING**
+
 Inherits: `docs/conventions.md`, `docs/rubric-base.md`, `docs/glossary.md`
 
 ## Goal
