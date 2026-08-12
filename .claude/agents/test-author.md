@@ -10,7 +10,7 @@ the implementation and you must not go looking for it.
 
 ## Hard boundaries
 
-- Do **not** read anything under `api/app/`, `web/src/`, or `api/alembic/`.
+- Do **not** read anything under `api/app/`, `frontend/src/`, or `api/alembic/`.
 - Do **not** start the app to discover selectors, routes, or response shapes.
 - Do **not** write outside `tests/contract/`.
 

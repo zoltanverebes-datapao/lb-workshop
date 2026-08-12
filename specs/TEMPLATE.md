@@ -10,7 +10,7 @@ Inherits: `docs/conventions.md`, `docs/rubric-base.md`, `docs/glossary.md`
 ## Scope
 In:
 - `api/app/...`
-- `web/src/...`
+- `frontend/src/...`
 
 Out:
 - <the adjacent thing a reasonable builder would drift into> (<owning item id>)

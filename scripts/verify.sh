@@ -16,17 +16,17 @@ stage "backend: tests"
 (cd backend && uv run pytest -q)
 
 # --- node lane ---------------------------------------------------------------
-stage "web: types"
-(cd web && npx tsc --noEmit)
+stage "frontend: types"
+(cd frontend && npx tsc --noEmit)
 
-stage "web: lint"
-(cd web && npx eslint . --max-warnings=0)
+stage "frontend: lint"
+(cd frontend && npx eslint . --max-warnings=0)
 
-stage "web: tests"
-(cd web && npx vitest run --reporter=dot)
+stage "frontend: tests"
+(cd frontend && npx vitest run --reporter=dot)
 
-stage "web: build"
-(cd web && npm run build)
+stage "frontend: build"
+(cd frontend && npm run build)
 
 # --- contract lane -----------------------------------------------------------
 # Playwright owns the Postgres container (globalSetup) and both servers

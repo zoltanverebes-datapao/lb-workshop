@@ -15,7 +15,7 @@ criteria from `C1`. The evaluator grades these in addition to the spec's.
 - **S4** — Migration is reversible: `alembic downgrade -1 && alembic upgrade head`
   succeeds, and `downgrade` is implemented rather than `pass`.
 
-- **S5** — API types in sync: `web/src/api/types.ts` is regenerated from the
+- **S5** — API types in sync: `frontend/src/api/types.ts` is regenerated from the
   OpenAPI schema and committed.
   Verified by: `npx openapi-typescript http://localhost:8100/openapi.json --check`
 
@@ -30,7 +30,7 @@ criteria from `C1`. The evaluator grades these in addition to the spec's.
 
 - **S8** — Scope respected: no file outside the spec's `Scope: In` list is
   modified, except `api/alembic/versions/**`, `api/uv.lock`,
-  `web/package-lock.json`, and `web/src/api/types.ts`.
+  `frontend/package-lock.json`, and `frontend/src/api/types.ts`.
   Verified by: `git diff --name-only`
 
 - **S9** — Contract tests frozen: `git diff <base-sha> -- tests/contract/` is

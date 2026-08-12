@@ -10,7 +10,7 @@ the next item starts.
 ## Stack
 
 - Backend: FastAPI, Python 3.12, `uv`, psycopg 3 (async, raw SQL), Yoyo migrations, pytest
-- Frontend: React 18, Vite, TypeScript strict, vitest, React Testing Library
+- Frontend: React 19, Vite, TypeScript strict, vitest, React Testing Library
 - Database: PostgreSQL 16
 - Contract tests: Playwright
 
@@ -19,7 +19,7 @@ the next item starts.
 | | dev | test |
 |---|---|---|
 | api | 8000 | **8100** |
-| web | 5173 | **5273** |
+| frontend | 5173 | **5273** |
 
 Test runs never touch dev ports. `reuseExistingServer: false` always — a stale
 server silently serving last round's build is a whole afternoon lost.
@@ -60,14 +60,14 @@ Formatting happens at render time only.
   `invoice-row`, `invoice-submit`, `invoice-empty`.
 - One testid per interactive element and per list container. Rows carry the
   same testid; tests count them.
-- API types are generated from the OpenAPI schema into `web/src/api/types.ts`.
+- API types are generated from the OpenAPI schema into `frontend/src/api/types.ts`.
   Never hand-written, never hand-edited.
 - No `any`, no `as any`, no `@ts-expect-error`.
 
 ## Tests
 
 - `api/tests/` — pytest, backend only. Its own Postgres container.
-- `web/src/**/*.test.tsx` — vitest, component only. No network.
+- `frontend/src/**/*.test.tsx` — vitest, component only. No network.
 - `tests/contract/` — Playwright, the only place that knows both sides exist.
   Frozen once written for an item.
 - Fixtures are named and seeded over HTTP: `POST /__test__/seed/<name>`.

@@ -19,7 +19,7 @@ spec  →  validate assumptions  →  contract tests  →  code  →  verdict
 | 0 | Spec | `spec-writer` | `specs/<id>.md` | Once, human-approved before stage 0.5 |
 | 0.5 | Validate assumptions | `assumption-validator` | detailed report, verdict PASS/FAIL/BLOCKED | Once, after stage 0 approval, before stage 1 |
 | 1 | Contract tests | `test-author` | `tests/contract/<id>.spec.ts` | Once, frozen after |
-| 2 | Code | `generator` | code under `backend/` and `web/` | Every round |
+| 2 | Code | `generator` | code under `backend/` and `frontend/` | Every round |
 | 3 | Grade | `evaluator` | `verdicts/<id>-r<n>.md` | Every round |
 
 **Stage 0 requires human approval.** The spec-writer emits an
@@ -82,7 +82,7 @@ Only commit on final PASS.)
 
 ```
 backend/                FastAPI, uv, Yoyo, pytest
-web/                    React + Vite, vitest
+frontend/               React + Vite, vitest
 tests/contract/         Playwright — the only code that sees both sides
 tests/setup/            Postgres container, global setup
 scripts/verify.sh       the single verification entry point
@@ -110,7 +110,7 @@ that is a defect in one of the two — stop and report it rather than picking.
 `scripts/verify.sh` is the only verification entry point. It owns the whole
 gate. Never conclude that something passes without running it.
 
-Ports are `8100` (api) and `5273` (web) in test. Never `8000` or `5173` — those
+Ports are `8100` (api) and `5273` (frontend) in test. Never `8000` or `5173` — those
 belong to a human's dev server.
 
 ## Non-negotiable

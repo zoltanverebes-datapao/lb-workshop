@@ -38,7 +38,7 @@ You implement exactly one backlog item, for one round.
 - Request and response bodies are Pydantic models. No bare dicts crossing the
   route boundary.
 
-**Frontend (`web/`)**
+**Frontend (`frontend/`)**
 
 - If a response model changed, regenerate the API types from the OpenAPI schema
   and commit them. Do not hand-edit generated types.
@@ -56,7 +56,7 @@ You implement exactly one backlog item, for one round.
 
 End your response with:
 
-- Files changed, grouped by `api/` and `web/`
+- Files changed, grouped by `api/` and `frontend/`
 - Whether a migration was added, and its revision id
 - The last stage `scripts/verify.sh` reached, and its exit code
 - **Any rubric criterion you knowingly did not satisfy, and why.** Under-report
