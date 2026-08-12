@@ -1,0 +1,7 @@
+{
+  "name": "lakebase-workshop",
+  "private": true,
+  "workspaces": [
+    "tests/contract"
+  ]
+}

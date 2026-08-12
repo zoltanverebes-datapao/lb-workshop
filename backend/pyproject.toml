@@ -10,10 +10,17 @@ dependencies = [
     "pytest-asyncio>=0.23.0",
     "ruff>=0.5.0",
     "mypy>=1.10.0",
+    "psycopg[binary]>=3.1.0",
+    "psycopg-pool>=3.2.0",
+    "yoyo-migrations>=8.2.0",
 ]
 
 [tool.mypy]
 strict = true
+
+[[tool.mypy.overrides]]
+module = ["yoyo", "yoyo.*"]
+ignore_missing_imports = true
 
 [tool.ruff]
 line-length = 88
