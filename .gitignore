@@ -7,3 +7,6 @@ __pycache__/
 node_modules/
 .env
 .claude/settings.local.json
+.DS_Store
+test-results/
+tests/contract/
