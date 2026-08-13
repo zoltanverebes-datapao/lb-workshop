@@ -2,6 +2,7 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests/contract',
+  testIgnore: '**/contract-backup/**',
   reporter: 'line',
   use: {
     baseURL: 'http://localhost:8100',

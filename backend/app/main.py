@@ -15,21 +15,16 @@ FRONTEND_DIST = Path(__file__).parent.parent.parent / "frontend" / "dist"
 @asynccontextmanager
 async def lifespan(application: FastAPI) -> AsyncGenerator[None, None]:
     """Application lifespan: open pool and run migrations on startup."""
-    import os
-
     from yoyo import get_backend, read_migrations
 
-    # db module validates DATABASE_URL at import time; importing here avoids
-    # raising at module import time (only raises when lifespan actually starts).
-    from app.db import pool
+    # db module validates DATABASE_URL/PGHOST at import time; importing here
+    # avoids raising at module import time (only raises when lifespan starts).
+    from app.db import get_yoyo_url, pool
 
     await pool.open()
 
     # Run Yoyo migrations (Yoyo uses synchronous connections)
-    database_url = os.environ["DATABASE_URL"]
-
-    # Convert postgresql:// to postgresql+psycopg:// for Yoyo's psycopg 3 backend
-    yoyo_url = database_url.replace("postgresql://", "postgresql+psycopg://", 1)
+    yoyo_url = get_yoyo_url()
 
     migrations_path = str(Path(__file__).parent.parent / "migrations")
     backend = get_backend(yoyo_url)

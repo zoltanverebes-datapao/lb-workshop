@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-if [ -z "${DATABASE_URL}" ]; then
-  DATABASE_URL="postgresql://${PGUSER}@${PGHOST}:${PGPORT}/${PGDATABASE}?sslmode=${PGSSLMODE}"
-fi
-export DATABASE_URL
-
 cd frontend && npm install
 npm run build
 
