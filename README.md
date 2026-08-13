@@ -72,14 +72,14 @@ Deploy the workshop application as a Databricks App, connected to your Lakebase 
 
 ## Step 3 — Ingest CSV Data into the Lakehouse
 
-Upload `product.csv` and `stock_level.csv` into the Lakehouse as Delta tables.
+Upload the CSV files from the `dataset/` folder into the Lakehouse as Delta tables.
 
 ### Option A — UI Upload
 
 1. In the workspace sidebar, navigate to your target catalog and schema.
 2. Click **Create table**.
-3. Upload `product.csv` — review the schema preview and click **Create table**.
-4. Repeat for `stock_level.csv`.
+3. Upload `dataset/product.csv` — review the schema preview and click **Create table**.
+4. Repeat for `dataset/stock_level.csv`.
 
 ### Option B — SQL with COPY INTO
 
@@ -88,12 +88,12 @@ If the files are in a Unity Catalog volume or cloud storage:
 ```sql
 -- Upload files to a volume first, then:
 COPY INTO catalog.schema.product
-FROM '/Volumes/catalog/schema/volume_name/product.csv'
+FROM '/Volumes/catalog/schema/volume_name/dataset/product.csv'
 FILEFORMAT = CSV
 FORMAT_OPTIONS ('header' = 'true', 'inferSchema' = 'true');
 
 COPY INTO catalog.schema.stock_level
-FROM '/Volumes/catalog/schema/volume_name/stock_level.csv'
+FROM '/Volumes/catalog/schema/volume_name/dataset/stock_level.csv'
 FILEFORMAT = CSV
 FORMAT_OPTIONS ('header' = 'true', 'inferSchema' = 'true');
 ```
