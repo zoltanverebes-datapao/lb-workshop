@@ -1,1 +1,4 @@
 command: ['bash', 'scripts/start.sh']
+env:
+  - name: ENDPOINT_NAME
+    value: 'projects/lb-workshop-zverebes/branches/production/endpoints/primary'
