@@ -14,6 +14,7 @@ export default defineConfig({
     timeout: 30000,
     env: {
       DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/test_s2',
+      APP_ENV: 'test',
     },
   },
 });
