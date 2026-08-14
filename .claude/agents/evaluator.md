@@ -48,11 +48,11 @@ a round and does not mean the code is wrong. Treat all of these as BLOCKED:
 - `uv sync` / `npm ci` failure, missing Python or Node version
 - Webserver readiness timeout where the process died with an import or
   dependency error unrelated to the diff
-- Alembic failing against an empty database **when the diff does not touch
-  `api/app/models/` or `api/alembic/`**
+- A migration failing against an empty database **when the diff does not
+  touch the database schema or `backend/migrations/`**
 
-That last one flips: if the diff *does* touch models or migrations, a migration
-failure is a real **FAIL**.
+That last one flips: if the diff *does* touch the schema or migrations, a
+migration failure is a real **FAIL**.
 
 When BLOCKED, state exactly what is missing and what would fix it. Grade nothing
 else.
